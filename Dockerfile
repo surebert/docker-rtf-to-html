@@ -10,7 +10,7 @@ RUN ln -s /usr/share/zoneinfo/US/Eastern /etc/localtime
 
 RUN yum install -y curl
 
-RUN curl wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm > epel-release-latest-7.noarch.rpm
+RUN curl http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm > epel-release-latest-7.noarch.rpm
 RUN rpm -ivh epel-release-latest-7.noarch.rpm
 RUN yum install -y --enablerepo=epel nodejs libreoffice bzip2
 RUN yum install -y libreoffice -y
