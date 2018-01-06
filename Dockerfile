@@ -13,7 +13,6 @@ RUN yum install -y curl
 RUN curl http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm > epel-release-latest-7.noarch.rpm
 RUN rpm -ivh epel-release-latest-7.noarch.rpm
 RUN yum install -y --enablerepo=epel nodejs libreoffice bzip2
-RUN yum install -y libreoffice -y
 RUN yum update -y
 
 #create the source directory
