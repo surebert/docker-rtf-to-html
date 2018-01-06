@@ -1,14 +1,27 @@
-webteam/docker-rtf-to-html
+RTF To HTML Converter
 ========================
 
 This image is an http service used to convert rtf to html using libre office
+
+# Deployment using copy of project from docker site
+
+```bash
+docker pull paulvisco/http-rtf-to-html-converter
+
+docker run -d \
+    --name rtf-to-html \
+    --restart=always \
+    -p 127.0.0.1:9022:9022 \
+    -e "port=9022" \
+    paulvisco/http-rtf-to-html-converter
+```
 
 # Build and Deploy
 
 If you wanted to build and test this yourself
 
 ```bash
-docker build --rm -t yournamespace/docker-rtf-to-html .
+docker build --rm -t yournamespace/rtf-to-html .
 
 docker run -d \
     --name rtf-to-html \
@@ -64,16 +77,4 @@ You could use any language that supports http request. This assumes that the doc
   file_put_contents("output.html", $result);
 ```
 
-# Deployment using copy of project on repos registry where the image is pre-built e.g.
 
-```bash
-docker login repos.roswellpark.org:4567
-docker pull repos.roswellpark.org:4567/web-team/docker-rtf-to-html
-
-docker run -d \
-    --name rtf-to-html \
-    --restart=always \
-    -p 127.0.0.1:9022:9022 \
-    -e "port=9022" \
-    repos.roswellpark.org:4567/web-team/docker-rtf-to-html
-```
