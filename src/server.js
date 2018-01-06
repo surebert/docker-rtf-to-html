@@ -52,7 +52,7 @@ app.route('/convert')
                     if (fieldname == "rtf") {
 
                         let cmd = "/usr/bin/libreoffice --headless --invisible --norestore  --convert-to html --outdir " + tempdir + " " + rtf_path;
-                        console.log('Running Command: ' + filename);
+                        console.log('Running Command: ' + cmd);
                         res.setHeader('Cmd', cmd);
 
                         exec(cmd, function (error, stdout, stderr) {
@@ -61,10 +61,9 @@ app.route('/convert')
                             }
 
                             if (stdout) {
-                                console.log("Conversion ERROR: " + stdout);
+                                console.log("Conversion ERROR: " + stderr);
                             }
 
-                            console.error("CMD ERROR: " + stderr);
                             if (error) {
                                 console.error("Error Converting RTF");
                                 res.status(500);
