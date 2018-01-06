@@ -68,18 +68,11 @@ This assumes that the docker image was deployed to localhost on port 9020 and th
 If you wanted to build and test this yourself
 
 ```bash
-docker kill yournamespace/rtf-to-html
-docker build --rm -t repos.roswellpark.org:4567/web-team/docker-rtf-to-html .
+docker build --rm -t yournamespace/rtf-to-html .
 
 docker run -d \
     --name rtf-to-html \
     --restart=always \
-    -p 127.0.0.1:9022:9022 \
-    -e "port=9022" \
-    yournamespace/rtf-to-html
-
-docker run -d \
-    --name rtf-to-html \
     -p 127.0.0.1:9022:9022 \
     -e "port=9022" \
     yournamespace/rtf-to-html

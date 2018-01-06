@@ -27,6 +27,4 @@ RUN npm install
 
 COPY src/server.js /usr/src/app
 
-EXPOSE 9022
-
 CMD [ "npm", "start" ]
