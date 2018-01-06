@@ -3,18 +3,19 @@ webteam/docker-rtf-to-html
 
 This image is an http service used to convert rtf to html using libre office
 
-# Deployment using copy of project on repos registry where the image is pre-built
+# Build and Deploy
+
+If you wanted to build and test this yourself
 
 ```bash
-docker login repos.roswellpark.org:4567
-docker pull repos.roswellpark.org:4567/web-team/docker-rtf-to-html
+docker build --rm -t yournamespace/docker-rtf-to-html .
 
 docker run -d \
     --name rtf-to-html \
     --restart=always \
     -p 127.0.0.1:9022:9022 \
     -e "port=9022" \
-    repos.roswellpark.org:4567/web-team/docker-rtf-to-html
+    yournamespace/rtf-to-html
 ```
 
 # Connecting to the container from the host
@@ -49,7 +50,7 @@ curl -F "rtf=@sample.rtf" http://localhost:9022/convert > sample.html
 ```
 
 ## Example call from CURL in PHP
-This assumes that the docker image was deployed to localhost on port 9020 and that you are in the test directory of this project where there are two files: one named logo.png and another named styles.css. You can simply run the example.php file in the test directory of this project or use the code below.
+You could use any language that supports http request. This assumes that the docker image was deployed to localhost on port 9022 and that you are in the test directory of this project where there are two files: one named logo.png and another named styles.css. You can simply run the example.php file in the test directory of this project or use the code below.
 
 ```php
 <?php
@@ -63,17 +64,16 @@ This assumes that the docker image was deployed to localhost on port 9020 and th
   file_put_contents("output.html", $result);
 ```
 
-# Build and Deploy
-
-If you wanted to build and test this yourself
+# Deployment using copy of project on repos registry where the image is pre-built e.g.
 
 ```bash
-docker build --rm -t yournamespace/rtf-to-html .
+docker login repos.roswellpark.org:4567
+docker pull repos.roswellpark.org:4567/web-team/docker-rtf-to-html
 
 docker run -d \
     --name rtf-to-html \
     --restart=always \
     -p 127.0.0.1:9022:9022 \
     -e "port=9022" \
-    yournamespace/rtf-to-html
+    repos.roswellpark.org:4567/web-team/docker-rtf-to-html
 ```
