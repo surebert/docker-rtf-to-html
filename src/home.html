@@ -1,0 +1,36 @@
+<html>
+<head>
+  <style type="text/css">
+  body{
+    background-color:orange;
+    color:brown;
+  }
+  pre {
+    background-color:#DFDFDF;
+    color:#666;
+    padding:30px;
+    marging:10px;
+  }
+  </style>
+</head>
+<body>
+<h1>Instructions</h1>
+<p>In order to convert rtf to html, send the rtf file .</p>
+<h2>CURL Example</h2>
+<pre>curl -F "rtf=@sample.rtf" http://localhost:9022/convert > sample.html</pre>
+<h2>PHP Example</h2>
+<pre>
+&lt;php
+  $ch = curl_init("http://localhost:9022/convert");
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, [
+      'rtf' =>  new \CurlFile(__DIR__.'/sample.rtf','text/rtf','sample.rtf')
+  ]);
+  $result = curl_exec($ch);
+  file_put_contents("output.html", $result);
+</pre>
+<h1>Background Info</h1>
+<p>This system is using libreoffice as the engine to support this function.</p>
+</body>
+</html>
